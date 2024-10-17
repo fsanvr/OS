@@ -1,0 +1,7 @@
+# Настройки vscode
+.vscode/
+.vscode/*
+
+
+# Файлы сборки
+[Bb]uild/
