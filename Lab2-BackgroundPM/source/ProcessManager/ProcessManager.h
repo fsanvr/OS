@@ -81,7 +81,7 @@
       } else if (processId == 0) {
           if (execl("/bin/sh", "/bin/sh", "-c", command, (char*)NULL) == -1) {
               perror("Error: execl failed");
-              exit(1);
+              _exit(1);
           }
       }
 
@@ -91,9 +91,9 @@
       }
       
       if (WIFEXITED(processStatus)) {
-        int code = WEXITSTATUS(processStatus);
+        int exitCode = WEXITSTATUS(processStatus);
         printf("Process exited with code: \n", exitCode);
-        return code;
+        return exitCode;
       }
 
       perror("Error: child process terminated");
