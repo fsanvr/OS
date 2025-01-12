@@ -1,3 +1,0 @@
-C:/Users/fsanv/my_projects/OS/Lab1-HelloWorld/build/CMakeFiles/helloworld.dir
-C:/Users/fsanv/my_projects/OS/Lab1-HelloWorld/build/CMakeFiles/edit_cache.dir
-C:/Users/fsanv/my_projects/OS/Lab1-HelloWorld/build/CMakeFiles/rebuild_cache.dir
