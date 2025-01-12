@@ -7,4 +7,4 @@ set(CMAKE_CXX_COMPILER "g++")
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(helloworld helloworld.cpp)
+add_executable(helloworld source/helloworld.cpp)
