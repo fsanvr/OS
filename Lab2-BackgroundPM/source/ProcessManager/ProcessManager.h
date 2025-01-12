@@ -36,7 +36,7 @@
       commandBuffer[MAX_PATH - 1] = '\0';
 
       if (!CreateProcess(NULL, commandBuffer, NULL, NULL, FALSE, 0, NULL, NULL, &startupInfo, &processInfo)) {
-        printf("Failed to create process. Error:\n", GetLastError());
+        printf("Failed to create process. Error: %\n", GetLastError());
         return -1;
       }
 
@@ -54,7 +54,7 @@
       CloseHandle(processInfo.hProcess);
       CloseHandle(processInfo.hThread);
 
-      printf("Process exited with code: \n", exitCode);
+      printf("Process exited with code:%\n", exitCode);
       return (int)exitCode;
     }
 
@@ -92,7 +92,7 @@
       
       if (WIFEXITED(processStatus)) {
         int exitCode = WEXITSTATUS(processStatus);
-        printf("Process exited with code: \n", exitCode);
+        printf("Process exited with code:%d\n", exitCode);
         return exitCode;
       }
 
