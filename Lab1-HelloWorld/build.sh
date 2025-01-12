@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # === Конфигурация ===
-BUILD_DIR=build
-REPO_URL=https://github.com/fsanvr/OS.git
-CMAKE_GENERATOR="MinGW Makefiles"
-CMAKE_COMPILER=g++
+BUILD_DIR="build"
+REPO_URL="https://github.com/fsanvr/OS.git"
+CMAKE_GENERATOR="Unix Makefiles"
+CMAKE_COMPILER="g++"
 
 # === Обновление исходных кодов ===
 echo "Updating source code from Git repository..."
@@ -27,7 +27,7 @@ fi
 
 # === Компиляция ===
 echo "Building project..."
-mingw32-make
+cmake --build .
 if [ $? -ne 0 ]; then
     echo "Build failed!"
     exit 1
