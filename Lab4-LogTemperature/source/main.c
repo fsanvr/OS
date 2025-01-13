@@ -16,8 +16,8 @@
     #include <unistd.h>
     #define SLEEP_MS(ms) usleep((ms) * 1000)
 
-    #define WRITE_PORT "/dev/ttyUSB0"
-    #define READ_PORT  "/dev/ttyUSB1"
+    #define WRITE_PORT "/dev/ttys004"
+    #define READ_PORT  "/dev/ttys005"
 #endif
 
 #define BAUD_RATE       9600
