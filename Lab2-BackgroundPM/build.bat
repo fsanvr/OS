@@ -7,6 +7,6 @@ cmake .. -G "MinGW Makefiles"
 
 cmake --build .
 
-HelloWorld.exe
+test.exe
 
 cd ..

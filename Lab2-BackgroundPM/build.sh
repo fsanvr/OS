@@ -7,4 +7,4 @@ cmake ../
 
 cmake --build .
 
-./HelloWorld
+./test
