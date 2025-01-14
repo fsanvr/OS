@@ -8,17 +8,18 @@
 
 # define GET                    mg_str("GET")
 # define POST                   mg_str("POST")
+# define OPTIONS                mg_str("OPTIONS")
 
 # define GetTemperatureLast     mg_str("/api/temperature/getlast")
 # define GetTemperatureByDate   mg_str("/api/temperature/get")
 # define AddTemperatureNew      mg_str("/api/temperature/set")
 
-# define ResponceJsonHeader     "Content-Type: application/json\r\n"
+# define ResponceJsonHeader     "Access-Control-Allow-Origin: *\r\nContent-Type: application/json\r\n"
+# define ResponceTextHeader     "Access-Control-Allow-Origin: *\r\nContent-Type: text/plain\r\n"
 
 
 static struct mg_mgr connectionManager;
 static struct mg_connection *connections;
-
 
 static void printMgString(struct mg_str str) {
     if (str.buf != NULL && str.len > 0) {
@@ -147,6 +148,11 @@ static void eventHandler(struct mg_connection *connection, int event, void *even
 
         logEvent(message);
 
+        if (mg_match(message->method, OPTIONS, NULL)) {           
+            mg_http_reply(connection, 200, "", "");
+            return;
+        }
+
         if (mg_match(message->method, GET, NULL)) {
             if (mg_match(message->uri, GetTemperatureLast, NULL)) {
                 handleTemperatureGetLast(connection, message);
@@ -164,7 +170,7 @@ static void eventHandler(struct mg_connection *connection, int event, void *even
             }
         }
 
-        mg_http_reply(connection, 404, "Content-Type: text/plain\r\n", "Not found\n");
+        mg_http_reply(connection, 404, ResponceTextHeader, "Not found\n");
     }
 }
 
