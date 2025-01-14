@@ -3,8 +3,8 @@
 #include "mongoose.h"
 #include "cJSON.h"
 
-#include "database.h"
-#include "http_server.h"
+#include "../database/Database.h"
+#include "Server.h"
 
 # define GET                    mg_str("GET")
 # define POST                   mg_str("POST")

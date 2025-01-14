@@ -10,14 +10,19 @@ set(LIB_DIR ${CMAKE_SOURCE_DIR}/lib)
 
 set(SOURCES
     ${SOURCE_DIR}/main.c
-    ${SOURCE_DIR}/database.c
-    ${SOURCE_DIR}/http_server.c
+
+    ${SOURCE_DIR}/logger/SerialPort.c
+    ${SOURCE_DIR}/logger/TemperatureDeviceSimulator.c
+    ${SOURCE_DIR}/logger/TemperatureLogger.c
+
+    ${SOURCE_DIR}/database/Database.c
+    ${SOURCE_DIR}/server/Server.c
 )
 
 set(LIB_SOURCES
     ${LIB_DIR}/sqlite3.c
     ${LIB_DIR}/mongoose.c
-    ${LIB_DIR}/cJSON.c  # Добавляем cJSON.c
+    ${LIB_DIR}/cJSON.c
 )
 
 include_directories(${SOURCE_DIR} ${LIB_DIR})
