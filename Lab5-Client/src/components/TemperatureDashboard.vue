@@ -2,7 +2,7 @@
   <div class="temperature-dashboard">
     <h1>Температурный мониторинг</h1>
 
-    <!-- Ввод дат -->
+
     <div class="date-picker">
       <label for="startDate">Начальная дата:</label>
       <input type="date" id="startDate" v-model="startDate" />
@@ -10,30 +10,30 @@
       <label for="endDate">Конечная дата:</label>
       <input type="date" id="endDate" v-model="endDate" />
 
-      <!-- Кнопка для запроса данных -->
+
       <button @click="fetchTemperatureData">Получить данные</button>
     </div>
 
-    <!-- Текущая температура -->
+
     <div class="current-temperature">
       <h2>Текущая температура:</h2>
       <p>{{ currentTemperature }} °C</p>
     </div>
 
-    <!-- Средняя температура за выбранный период -->
+
     <div class="average-temperature">
       <h2>Средняя температура за выбранный период:</h2>
       <p>{{ averageTemperature }} °C</p>
     </div>
 
-    <!-- Подключаем компонент графика и передаем данные -->
+
     <TemperatureChart
       :chartData="chartData"
       :startDate="startDate"
       :endDate="endDate"
     />
 
-    <!-- Ошибка загрузки данных -->
+
     <div v-if="error" class="error-message">
       <p>Ошибка загрузки данных. Пожалуйста, попробуйте снова.</p>
     </div>
@@ -53,10 +53,10 @@ export default {
     return {
       currentTemperature: null,
       averageTemperature: null,
-      chartData: null, // Изначально данные графика отсутствуют
+      chartData: null,
       error: false,
-      startDate: "2025-01-14", // Начальная дата
-      endDate: "2025-01-17",   // Конечная дата
+      startDate: "2025-01-14",
+      endDate: "2025-01-17",
     };
   },
   mounted() {
@@ -81,7 +81,7 @@ export default {
           new Date(item.timestamp * 1000).toLocaleTimeString()
         );
 
-        // Обновляем chartData как новый объект
+
         this.chartData = {
           labels: timestamps,
           datasets: [
@@ -95,23 +95,24 @@ export default {
           ],
         };
 
-        // Расчет текущей температуры
+
         this.currentTemperature = temperatures[temperatures.length - 1];
 
-        // Расчет средней температуры
+
         const totalTemperature = temperatures.reduce((sum, temp) => sum + temp, 0);
         this.averageTemperature = (totalTemperature / temperatures.length).toFixed(2);
 
-        this.error = false; // Сбрасываем ошибку
+        this.error = false;
       } catch (error) {
         console.error("Ошибка при получении данных:", error);
-        this.chartData = null; // Сбрасываем данные графика
-        this.error = true; // Устанавливаем флаг ошибки
+        this.chartData = null;
+        this.error = true;
       }
     },
   },
 };
 </script>
+
 
 <style scoped>
 .temperature-dashboard {

@@ -2,7 +2,7 @@
   <div class="temperature-chart-wrapper">
     <h2 v-if="chartData">График температуры за период с {{ startDate }} по {{ endDate }}:</h2>
     <p v-else>Данные для графика отсутствуют.</p>
-    <!-- Рисуем график только при наличии данных -->
+
     <div class="temperature-chart">
       <Line v-if="chartData" :data="chartData" />
     </div>
@@ -42,7 +42,7 @@ export default {
   props: {
     chartData: {
       type: Object,
-      default: null, // Устанавливаем значение по умолчанию
+      default: null,
     },
     startDate: {
       type: String,
@@ -59,14 +59,14 @@ export default {
 <style scoped>
 .temperature-chart-wrapper {
   display: flex;
-  flex-direction: column;   /* Устанавливаем вертикальное направление (первый элемент - заголовок, второй - график) */
-  align-items: center;      /* Центрируем по горизонтали все элементы (включая заголовок и график) */
+  flex-direction: column;
+  align-items: center;
   width: 100%;
-  height: 60vh;             /* Контейнер занимает 60% от высоты экрана */
+  height: 60vh;
 }
 
 .temperature-chart {
-  width: 60%;   /* График будет занимать 80% ширины родительского контейнера */
-  height: 100%; /* График будет занимать всю высоту контейнера */
+  width: 60%;
+  height: 100%;
 }
 </style>
