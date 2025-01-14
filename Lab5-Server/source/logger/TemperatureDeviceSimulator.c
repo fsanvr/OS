@@ -6,8 +6,13 @@ double generateRandomTemperature(double minTemperature, double maxTemperature) {
     return minTemperature + (rand() / div);
 }
 
+double smoothedTemperature(double previousTemperature, double minTemperature, double maxTemperature, double alpha) {
+    double newTemperature = generateRandomTemperature(minTemperature, maxTemperature);
+    return previousTemperature * (1 - alpha) + newTemperature * alpha;
+}
+
 TemperatureDeviceSimulator* TemperatureDeviceSimulatorInit(
-    const char *portName, double baudRate, double minTemperature, int maxTemperature, int intervalMs
+    const char *portName, double baudRate, double minTemperature, double maxTemperature, double alpha, int intervalMs
     ) {
     TemperatureDeviceSimulator *temperatureDeviceSimulator = (TemperatureDeviceSimulator *)malloc(sizeof(TemperatureDeviceSimulator));
     if (!temperatureDeviceSimulator) {
@@ -18,7 +23,9 @@ TemperatureDeviceSimulator* TemperatureDeviceSimulatorInit(
     temperatureDeviceSimulator->baudRate = baudRate;
     temperatureDeviceSimulator->minTemperature = minTemperature;
     temperatureDeviceSimulator->maxTemperature = maxTemperature;
+    temperatureDeviceSimulator->alpha = alpha;
     temperatureDeviceSimulator->intervalMs = intervalMs;
+    temperatureDeviceSimulator->previousTemperature = 0.0;
 
     temperatureDeviceSimulator->serialPort = SerialOpen(portName, baudRate);
     if (!temperatureDeviceSimulator->serialPort) {
@@ -48,7 +55,12 @@ void TemperatureDeviceSimulatorRun(TemperatureDeviceSimulator *temperatureDevice
     char temperatureBuffer[TEMPERATURE_BUFFER_SIZE];
     
     while (1) {
-        double temperature = generateRandomTemperature(temperatureDeviceSimulator->minTemperature, temperatureDeviceSimulator->maxTemperature);
+        double temperature = smoothedTemperature(
+            temperatureDeviceSimulator->previousTemperature,
+            temperatureDeviceSimulator->minTemperature,
+            temperatureDeviceSimulator->maxTemperature,
+            temperatureDeviceSimulator->alpha
+            );
 
         snprintf(temperatureBuffer, TEMPERATURE_BUFFER_SIZE, "%f\n", temperature);
 

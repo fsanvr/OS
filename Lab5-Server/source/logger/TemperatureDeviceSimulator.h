@@ -23,6 +23,8 @@ typedef struct {
     int baudRate;
     double minTemperature;
     double maxTemperature;
+    double previousTemperature;
+    double alpha;
     int intervalMs;
 } TemperatureDeviceSimulator;
 
@@ -32,7 +34,8 @@ TemperatureDeviceSimulator* TemperatureDeviceSimulatorInit(
     const char *portName,
     double baudRate,
     double minTemperature,
-    int maxTemperature,
+    double maxTemperature,
+    double alpha,
     int intervalMs
     );
 

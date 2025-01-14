@@ -51,7 +51,8 @@ int main(int argc, char *argv[]) {
         WRITE_PORT,
         BAUD_RATE,
         -20.0,
-        40.0,
+        20.0,
+        0.12,
         1000
     );
 
