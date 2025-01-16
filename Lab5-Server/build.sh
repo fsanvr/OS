@@ -1,6 +1,6 @@
 git pull origin main
 
-socat -d -d pty,raw,echo=0 pty,raw,echo=0
+lxterminal -e "bash -c 'socat -d -d pty,raw,echo=0 pty,raw,echo=0; exec bash'"
 
 mkdir build
 cd build
