@@ -15,3 +15,9 @@ An extension of previous lab work, creates server for writing logs to database a
 
 ## [Lab5-Client (part 2/2)](./Lab5-Client)
 Web client that requests data from database and displays it graphically
+
+## [Lab6-ClientQt](./Lab6-ClientQt)
+Desktop client that requests data from database and displays it graphically
+
+## [Lab7-ClientQtKiosk](./Lab7-ClientQtKiosk)
+Desktop client that requests data from database and displays it graphically with kiosk mode (+ demonstration)
