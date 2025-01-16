@@ -9,7 +9,7 @@ void DisableGlobalShortcuts() {
     Display *display = XOpenDisplay(nullptr);
     if (!display) return;
 
-    Window root = DefaultRootWindow(display);
+    Window rootWindow = DefaultRootWindow(display);
 
     KeyCode tab = XKeysymToKeycode(display, XK_Tab);
     KeyCode altKeyLeft = XKeysymToKeycode(display, XK_Alt_L);
@@ -30,6 +30,6 @@ int main(int argc, char *argv[])
 
     MainWindow w;
     w.showFullScreen();
-    
+
     return a.exec();
 }
