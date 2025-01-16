@@ -17,12 +17,22 @@
 
 using namespace QtCharts;
 
+
+void MainWindow::RestrictMouseToWindow() {
+    QRect windowRect = geometry();
+    QCursor::setPos(windowRect.center());
+    setMouseTracking(true);
+
+    QRegion region(windowRect);
+    setMask(region);
+}
+
 void MainWindow::closeEvent(QCloseEvent *event) {
     event->ignore();
 }
 
 void MainWindow::keyPressEvent(QKeyEvent *event) {
-    if (event->key() == Qt::Key_J) {
+    if (event->key() == Qt::Key_Q) {
         QApplication::quit();
     } else {
         event->ignore();
@@ -32,6 +42,11 @@ void MainWindow::keyPressEvent(QKeyEvent *event) {
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow), networkManager(new QNetworkAccessManager(this)) {
     ui->setupUi(this);
+
+    this->setWindowFlags(Qt::FramelessWindowHint | Qt::Window | Qt::WindowStaysOnTopHint); 
+    this->showMaximized();
+
+    RestrictMouseToWindow();
 
     connect(ui->getDataButton, &QPushButton::clicked, this, &MainWindow::FetchTemperatureData);
 }
