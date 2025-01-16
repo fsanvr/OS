@@ -26,6 +26,9 @@ public:
 protected:
     void closeEvent(QCloseEvent *event) override;
     void keyPressEvent(QKeyEvent *event) override;
+    void mousePressEvent(QCloseEvent *event) override;
+    void mouseMoveEvent(QKeyEvent *event) override;
+    void enterEvent(QKeyEvent *event) override;
 
 private slots:
     void FetchTemperatureData();
