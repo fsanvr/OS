@@ -5,6 +5,6 @@ cd build
 
 cmake ../
 
-cmake --build .
+make -j$(nproc)
 
 ./main
