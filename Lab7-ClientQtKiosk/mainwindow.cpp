@@ -23,16 +23,30 @@ void MainWindow::closeEvent(QCloseEvent *event) {
 }
 
 void MainWindow::keyPressEvent(QKeyEvent *event) {
-    if (event->key() == Qt::Key_Q) {
+    if (event->key() == Qt::Key_J) { // для экстренного выхода
         QApplication::quit();
     } else {
         event->ignore();
     }
 }
 
+void MainWindow::mousePressEvent(QMouseEvent *event) {
+    event->ignore();
+}
+
+void MainWindow::mouseMoveEvent(QMouseEvent *event) {
+    event->ignore();
+}
+
+void MainWindow::enterEvent(QEvent *event) {
+    setCursor(Qt::BlankCursor);
+}
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow), networkManager(new QNetworkAccessManager(this)) {
     ui->setupUi(this);
+
+    this->FetchTemperatureData();
 
     connect(ui->getDataButton, &QPushButton::clicked, this, &MainWindow::FetchTemperatureData);
 }

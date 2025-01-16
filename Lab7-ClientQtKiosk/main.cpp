@@ -8,7 +8,7 @@ int main(int argc, char *argv[])
 
     MainWindow w;
 
-    w.setWindowFlags(Qt::WindowStaysOnTopHint | Qt::FramelessWindowHint);
+    w.setWindowFlags(Qt::FramelessWindowHint | Qt::Window | Qt::WindowStaysOnTopHint);
     w.showMaximized();
 
     return a.exec();
