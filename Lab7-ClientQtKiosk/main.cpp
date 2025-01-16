@@ -20,11 +20,24 @@ void DisableGlobalShortcuts() {
     XCloseDisplay(display);
 }
 
+void DisableAltTab() {
+    Display* display = XOpenDisplay(nullptr);
+    if (!display) return;
+
+    Window rootWindow = DefaultRootWindow(display);
+
+    KeyCode altTab = XKeysymToKeycode(display, XK_Tab);
+    XGrabKey(display, altTab, Mod1Mask, rootWindow, True, GrabModeAsync, GrabModeAsync);
+
+    XCloseDisplay(display);
+}
+
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
     DisableGlobalShortcuts();
+    DisableAltTab();
 
     MainWindow w;
     w.show();
