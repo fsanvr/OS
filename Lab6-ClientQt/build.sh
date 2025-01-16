@@ -3,8 +3,8 @@ git pull origin main
 mkdir build
 cd build
 
-cmake ../
+qmake ../
 
 make -j$(nproc)
 
-./main
+./Lab6-ClientQt
