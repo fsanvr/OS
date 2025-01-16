@@ -43,9 +43,6 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow), networkManager(new QNetworkAccessManager(this)) {
     ui->setupUi(this);
 
-    this->setWindowFlags(Qt::FramelessWindowHint | Qt::Window);
-    this->showFullScreen();
-
     RestrictMouseToWindow();
 
     connect(ui->getDataButton, &QPushButton::clicked, this, &MainWindow::FetchTemperatureData);
