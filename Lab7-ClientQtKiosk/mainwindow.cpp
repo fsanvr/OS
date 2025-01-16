@@ -46,7 +46,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     RestrictMouseToWindow();
     this->setWindowFlags(Qt::FramelessWindowHint | Qt::Window);
-    this->setWindowState(Qt::WindowFullScreen);
+    this->showFullScreen();
 
     connect(ui->getDataButton, &QPushButton::clicked, this, &MainWindow::FetchTemperatureData);
 }

@@ -11,23 +11,13 @@ void DisableGlobalShortcuts() {
 
     Window root = DefaultRootWindow(display);
 
-    KeyCode keyAltTab = XKeysymToKeycode(display, XK_Tab);
-    KeyCode keyCtrlAltT = XKeysymToKeycode(display, XK_T);
+    KeyCode tab = XKeysymToKeycode(display, XK_Tab);
+    KeyCode altKeyLeft = XKeysymToKeycode(display, XK_Alt_L);
+    KeyCode altKeyRight = XKeysymToKeycode(display, XK_Alt_R);
 
-    XGrabKey(display, keyAltTab, Mod1Mask, root, True, GrabModeAsync, GrabModeAsync);
-    XGrabKey(display, keyCtrlAltT, ControlMask | Mod1Mask, root, True, GrabModeAsync, GrabModeAsync);
-
-    XCloseDisplay(display);
-}
-
-void DisableAltTab() {
-    Display* display = XOpenDisplay(nullptr);
-    if (!display) return;
-
-    Window rootWindow = DefaultRootWindow(display);
-
-    KeyCode altTab = XKeysymToKeycode(display, XK_Tab);
-    XGrabKey(display, altTab, Mod1Mask, rootWindow, True, GrabModeAsync, GrabModeAsync);
+    XGrabKey(display, tab, Mod1Mask, rootWindow, True, GrabModeAsync, GrabModeAsync);
+    XGrabKey(display, altKeyLeft, Mod1Mask, rootWindow, True, GrabModeAsync, GrabModeAsync);
+    XGrabKey(display, altKeyRight, Mod1Mask, rootWindow, True, GrabModeAsync, GrabModeAsync);
 
     XCloseDisplay(display);
 }
@@ -37,9 +27,9 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
 
     DisableGlobalShortcuts();
-    DisableAltTab();
 
     MainWindow w;
-    w.show();
+    w.showFullScreen();
+    
     return a.exec();
 }
