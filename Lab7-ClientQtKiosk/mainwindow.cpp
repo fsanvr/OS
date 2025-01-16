@@ -32,9 +32,8 @@ void MainWindow::closeEvent(QCloseEvent *event) {
 }
 
 void MainWindow::keyPressEvent(QKeyEvent *event) {
-    if (event->modifiers() == (Qt::ControlModifier | Qt::AltModifier | Qt::ShiftModifier) &&
-        event->key() == Qt::Key_Q) {
-        QApplication::quit();  // Выход по комбинации Ctrl+Alt+Shift+Q
+    if (event->key() == Qt::Key_Q) {
+        QApplication::quit();
     } else {
         event->ignore();
     }
@@ -44,9 +43,10 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow), networkManager(new QNetworkAccessManager(this)) {
     ui->setupUi(this);
 
-    RestrictMouseToWindow();
     this->setWindowFlags(Qt::FramelessWindowHint | Qt::Window);
     this->showFullScreen();
+
+    RestrictMouseToWindow();
 
     connect(ui->getDataButton, &QPushButton::clicked, this, &MainWindow::FetchTemperatureData);
 }
