@@ -165,7 +165,7 @@ void TemperatureLoggerRun(TemperatureLogger *logger) {
       if (SerialRead(logger->serialPort, buffer, sizeof(buffer) - 1)) {
         char *end;
         double temperature = strtod(buffer, &end);
-        printf("Считана температура из порта: %f\n", temperature);
+        // printf("Считана температура из порта: %f\n", temperature);
         ProcessTemperatureData(logger, temperature, &hourlySum, &hourlyCount, &dailySum, &dailyCount, &lastHour, &lastDay);
       }
       SleepMs(1000);

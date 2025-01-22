@@ -66,7 +66,7 @@ export default {
     async fetchTemperatureData() {
       try {
         const response = await axios.get(
-          `http://127.0.0.1:8080/api/temperature/get?startDate=${this.startDate}&endDate=${this.endDate}`
+          `http://192.168.0.2:8080/api/temperature/get?startDate=${this.startDate}&endDate=${this.endDate}`
         );
         const data = response.data;
 

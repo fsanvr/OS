@@ -70,7 +70,7 @@ void TemperatureDeviceSimulatorRun(TemperatureDeviceSimulator *temperatureDevice
             break;
         }
 
-        printf("Отправлено в порт %s: %s", temperatureDeviceSimulator->portName, temperatureBuffer);
+        // printf("Отправлено в порт %s: %s", temperatureDeviceSimulator->portName, temperatureBuffer);
 
         SleepMs(temperatureDeviceSimulator->intervalMs);
     }

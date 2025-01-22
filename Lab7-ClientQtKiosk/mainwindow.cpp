@@ -23,23 +23,11 @@ void MainWindow::closeEvent(QCloseEvent *event) {
 }
 
 void MainWindow::keyPressEvent(QKeyEvent *event) {
-    if (event->key() == Qt::Key_J) { // для экстренного выхода
+    if (event->key() == Qt::Key_5) {
         QApplication::quit();
     } else {
         event->ignore();
     }
-}
-
-void MainWindow::mousePressEvent(QMouseEvent *event) {
-    event->ignore();
-}
-
-void MainWindow::mouseMoveEvent(QMouseEvent *event) {
-    event->ignore();
-}
-
-void MainWindow::enterEvent(QEvent *event) {
-    setCursor(Qt::BlankCursor);
 }
 
 MainWindow::MainWindow(QWidget *parent)

@@ -25,7 +25,7 @@ MainWindow::~MainWindow() {
 void MainWindow::FetchTemperatureData() {
     QString startDate = ui->startDateEdit->date().toString("yyyy-MM-dd");
     QString endDate = ui->endDateEdit->date().toString("yyyy-MM-dd");
-    QString url = QString("http://127.0.0.1:8080/api/temperature/get?startDate=%1&endDate=%2")
+    QString url = QString("http://192.168.0.2:8080/api/temperature/get?startDate=%1&endDate=%2")
                       .arg(startDate, endDate);
 
     QNetworkRequest request((QUrl(url)));
